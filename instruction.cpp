@@ -292,8 +292,10 @@ int32_t gen_immediate(Opcode opcode, uint32_t imm) {
 		shamt = 0;
 		break;
 	case Opcode::JAL:
+        shamt = 11;
+        break;
 	case Opcode::JALR:
-		shamt = 12;
+		shamt = 20;
 		break;
 	case Opcode::BRANCH:
 		shamt = 19;

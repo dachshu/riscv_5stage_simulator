@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
 
 
 	//load_elf(argv[1], entry_point, base_vaddr, max_vaddr, memory, stack, sp);
-	load_elf("hello-riscv-dbg", entry_point, base_vaddr, max_vaddr, memory
+	load_elf("hello_riscv_cpp", entry_point, base_vaddr, max_vaddr, memory
 		, stack, sp);
 
 	if (!memory) {
