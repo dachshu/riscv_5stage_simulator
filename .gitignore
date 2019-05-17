@@ -1,2 +1,3 @@
 CMakeFiles/**
 out*.txt
+riscv_simulator.out
