@@ -1,0 +1,3 @@
+/home/cjy/riscv_simulator/riscv_5stage_simulator/CMakeFiles/rebuild_cache.dir
+/home/cjy/riscv_simulator/riscv_5stage_simulator/CMakeFiles/riscv_simulator.out.dir
+/home/cjy/riscv_simulator/riscv_5stage_simulator/CMakeFiles/edit_cache.dir

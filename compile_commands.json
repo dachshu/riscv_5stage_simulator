@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/cjy/riscv_simulator/riscv_5stage_simulator",
+  "command": "/usr/bin/c++    -m32 -g   -o CMakeFiles/riscv_simulator.out.dir/main.cpp.o -c /home/cjy/riscv_simulator/riscv_5stage_simulator/main.cpp",
+  "file": "/home/cjy/riscv_simulator/riscv_5stage_simulator/main.cpp"
+},
+{
+  "directory": "/home/cjy/riscv_simulator/riscv_5stage_simulator",
+  "command": "/usr/bin/c++    -m32 -g   -o CMakeFiles/riscv_simulator.out.dir/elf.cpp.o -c /home/cjy/riscv_simulator/riscv_5stage_simulator/elf.cpp",
+  "file": "/home/cjy/riscv_simulator/riscv_5stage_simulator/elf.cpp"
+},
+{
+  "directory": "/home/cjy/riscv_simulator/riscv_5stage_simulator",
+  "command": "/usr/bin/c++    -m32 -g   -o CMakeFiles/riscv_simulator.out.dir/instruction.cpp.o -c /home/cjy/riscv_simulator/riscv_5stage_simulator/instruction.cpp",
+  "file": "/home/cjy/riscv_simulator/riscv_5stage_simulator/instruction.cpp"
+},
+{
+  "directory": "/home/cjy/riscv_simulator/riscv_5stage_simulator",
+  "command": "/usr/bin/c++    -m32 -g   -o CMakeFiles/riscv_simulator.out.dir/memory.cpp.o -c /home/cjy/riscv_simulator/riscv_5stage_simulator/memory.cpp",
+  "file": "/home/cjy/riscv_simulator/riscv_5stage_simulator/memory.cpp"
+},
+{
+  "directory": "/home/cjy/riscv_simulator/riscv_5stage_simulator",
+  "command": "/usr/bin/c++    -m32 -g   -o CMakeFiles/riscv_simulator.out.dir/pipeline.cpp.o -c /home/cjy/riscv_simulator/riscv_5stage_simulator/pipeline.cpp",
+  "file": "/home/cjy/riscv_simulator/riscv_5stage_simulator/pipeline.cpp"
+},
+{
+  "directory": "/home/cjy/riscv_simulator/riscv_5stage_simulator",
+  "command": "/usr/bin/c++    -m32 -g   -o CMakeFiles/riscv_simulator.out.dir/syscall.cpp.o -c /home/cjy/riscv_simulator/riscv_5stage_simulator/syscall.cpp",
+  "file": "/home/cjy/riscv_simulator/riscv_5stage_simulator/syscall.cpp"
+}
+]

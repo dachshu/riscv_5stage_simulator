@@ -99,7 +99,7 @@ int32_t Memory::read_int(uint32_t vaddr, uint8_t size, bool sigend)
 
 	}
 	
-	std::cout << "invalid memory access [" << std::hex << vaddr << "]" << std::endl;
+	std::clog << "invalid memory access [" << std::hex << vaddr << "]" << std::endl;
 	exit(1);
 	return 0;
 }
@@ -130,7 +130,7 @@ float Memory::read_float(uint32_t vaddr)
 
 	}
 
-	std::cout << "invalid memory access [" << std::hex<< vaddr << "]" << std::endl;
+	std::clog << "invalid memory access [" << std::hex<< vaddr << "]" << std::endl;
 	exit(1);
 	return 0.0f;
 }
@@ -169,7 +169,7 @@ void Memory::write(uint32_t vaddr, uint8_t size, uint32_t* data)
 
 	}
 
-	std::cout << "invalid memory access [" << std::hex << vaddr << "]" << std::endl;
+	std::clog << "invalid memory access [" << std::hex << vaddr << "]" << std::endl;
 	exit(1);
 }
 
@@ -185,7 +185,7 @@ char* Memory::get_ptr(uint32_t vaddr)
 		return &tls[vaddr];
 	}
 
-	std::cout << "invalid memory access [" << std::hex << vaddr << "]" << std::endl;
+	std::clog << "invalid memory access [" << std::hex << vaddr << "]" << std::endl;
 	exit(1);
 	return 0;
 }

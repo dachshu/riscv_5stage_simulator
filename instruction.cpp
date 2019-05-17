@@ -25,7 +25,7 @@ Opcode int_to_opcode(uint32_t insn) {
 	case 0b0001111: return Opcode::FENCE;
 	case 0b0101111: return Opcode::AMO;
 	default: {
-		cout << "Unknown opcde " << hex << opcode << endl;
+		clog << "Unknown opcde " << hex << opcode << endl;
 		exit(1);
         break;
 	}
@@ -245,7 +245,7 @@ Function insn_to_fn(Opcode opcode, uint32_t funct3, uint32_t funct7, uint32_t im
 		case 0b0001000: return Function::FMUL_S;
 		case 0b0001100: return Function::FDIV_S;
         default:
-                        std::cout << "not defined insn" << std::endl;
+                        std::clog << "not defined insn" << std::endl;
                         exit(1);
         }
 	}
@@ -278,7 +278,7 @@ Function insn_to_fn(Opcode opcode, uint32_t funct3, uint32_t funct7, uint32_t im
 		}
 	}
 
-	cout << "Failed to decode instruction !!";
+	clog << "Failed to decode instruction !!";
 	exit(1);
     return Function::ADDI;
 }

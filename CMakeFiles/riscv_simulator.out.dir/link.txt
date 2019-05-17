@@ -1,0 +1,1 @@
+/usr/bin/c++  -m32 -g   CMakeFiles/riscv_simulator.out.dir/main.cpp.o CMakeFiles/riscv_simulator.out.dir/elf.cpp.o CMakeFiles/riscv_simulator.out.dir/instruction.cpp.o CMakeFiles/riscv_simulator.out.dir/memory.cpp.o CMakeFiles/riscv_simulator.out.dir/pipeline.cpp.o CMakeFiles/riscv_simulator.out.dir/syscall.cpp.o  -o riscv_simulator.out 

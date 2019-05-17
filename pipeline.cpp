@@ -1375,11 +1375,11 @@ void Pipeline::run()
 			"_"
 		};
 
-		std::cout << "clock " << std::dec<< clock << std::endl;
-		std::cout << stage_str[static_cast<int>(results[0])] << ":" << std::hex << fetch << std::endl;
-		std::cout << stage_str[static_cast<int>(results[1])];
+		std::clog << "clock " << std::dec<< clock << std::endl;
+		std::clog << stage_str[static_cast<int>(results[0])] << ":" << std::hex << fetch << std::endl;
+		std::clog << stage_str[static_cast<int>(results[1])];
 		if (results[1] != Stage_Result::NOP) {
-			std::cout << ":" << func_str[static_cast<int>(out[1].function)]
+			std::clog << ":" << func_str[static_cast<int>(out[1].function)]
 				<< "[" << "pc:" << std::hex <<  out[1].fields.pc
 				<< " rs1:" << std::hex << out[1].fields.rs1
 				<< " rs2:" << std::hex << out[1].fields.rs2
@@ -1387,26 +1387,26 @@ void Pipeline::run()
 				<< " imm:" << std::hex << out[1].fields.imm
 				<< "(" << std::dec << int(out[1].fields.imm) << ")]";
 		}
-		std::cout << std::endl;
+		std::clog << std::endl;
 
 		for (int i = 2; i < 17; ++i) {
-			std::cout << stage_str[static_cast<int>(results[i])];
+			std::clog << stage_str[static_cast<int>(results[i])];
 			if (results[i] != Stage_Result::NOP) {
-				std::cout << ":" << func_str[static_cast<int>(out[i].function)]
+				std::clog << ":" << func_str[static_cast<int>(out[i].function)]
 					<< "[" << "pc:" << std::hex << out[i].fields.pc
 					<< " rs1:" << std::hex << out[i].fields.rs1
 					<< " rs2:" << std::hex << out[i].fields.rs2
 					<< " rd:" << std::hex << out[i].fields.rd
 					<< " imm:" << std::hex << out[i].fields.imm << "]";
 			}
-			std::cout << "|";
+			std::clog << "|";
 			if ((i - 1) % 5 == 0)
-				std::cout << std::endl;
+				std::clog << std::endl;
 		}
 
         for(int i = 0; i < 32; ++i)
-            std::cout << std::hex << " [" << i <<"]:" << register_file.gpr[i];
-        std::cout << std::endl;
+            std::clog << " [" << i <<"]:" << std::hex << register_file.gpr[i];
+        std::clog << std::endl;
 
 		if (shut_down)
 			return;

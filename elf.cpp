@@ -26,7 +26,7 @@ void load_elf(const char* fn
 		in.read((char*)(&fh), sizeof(Elf32_Fhdr));
 	}
 	else {
-		cout << "not found elf file!" << endl;
+		clog << "not found elf file!" << endl;
 		return;
 	}
 

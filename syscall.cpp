@@ -71,10 +71,10 @@ long do_syscall(long a0, long a1, long a2, long a3, long a4, long a5, unsigned l
         return sys_write(a0, a1, a2, memory);
     case SYS_exit:
     case SYS_exit_group:
-        std::cout << "bye~!" << std::endl;
+        std::clog << "bye~!" << std::endl;
         exit(0);
     default:
-        std::cout << "not defined syscall " << std::dec << n << std::endl;
+        std::clog << "not defined syscall " << std::dec << n << std::endl;
 		exit(1);
         break;
 	}
@@ -87,6 +87,6 @@ void handle_syscall(RegisterFile& register_file, Memory& memory)
 	register_file.gpr[10] = do_syscall(register_file.gpr[10]
 		, register_file.gpr[11], register_file.gpr[12], register_file.gpr[13],
 		register_file.gpr[14], register_file.gpr[15], register_file.gpr[17], memory);
-    std::cout << "sys call num: " << std::dec << register_file.gpr[17] << std::endl;
+    std::clog << "sys call num: " << std::dec << register_file.gpr[17] << std::endl;
 }
 

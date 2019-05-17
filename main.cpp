@@ -22,11 +22,11 @@ int main(int argc, char* argv[])
 		, stack, sp);
 
 	if (!memory) {
-		cout << "memory empty!!!" << endl;
+		clog << "memory empty!!!" << endl;
 		return 0;
 	}
 	
-	std::cout << "entry point : " << entry_point << std::endl;
+	std::clog << "entry point : " << entry_point << std::endl;
 
 	Memory mem{ entry_point, base_vaddr, max_vaddr, memory, stack };
 	Pipeline pipeline{ &mem, entry_point, sp };
