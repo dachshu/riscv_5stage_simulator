@@ -46,11 +46,26 @@ Stage_Result Tomasulo_Two::fetch_n_decode()
             insn = nop;
         }   
 
-	    if (insn.opcode == Opcode::BRANCH
-		    || insn.opcode == Opcode::JAL) {
-		    register_file.pc += int32_t(insn.fields.imm);
+	    if (insn.opcode == Opcode::BRANCH) {
+		    if(branch_predict == false){
+                register_file.pc += int32_t(insn.fields.imm);
+		        insn.taken = true;
+	        }
+            else{
+                if(predictor[insn.fields.pc].taken == true){
+                    register_file.pc += int32_t(insn.fields.imm);
+		            insn.taken = true;
+                }
+                else{
+                    register_file.pc += WORD_SIZE;
+                    insn.taken = false;
+                }
+            }
+        }
+        else if(insn.opcode == Opcode::JAL){
+            register_file.pc += int32_t(insn.fields.imm);
 		    insn.taken = true;
-	    }
+        }
 	    else if (insn.opcode == Opcode::JALR) {
 		    int32_t value{ 0 };
 		    uint32_t nROB{ 0 };
@@ -949,11 +964,13 @@ Stage_Result Tomasulo_Two::commit(unsigned long long clock)
 					if (register_stat[b->rd].nROB == (uint32_t)(&(*b)))
 						register_stat[b->rd].busy = false;
 				}
+                /*
                 std::clog << std::hex << b->insn.fields.pc << std::endl;
                 for(int i = 0; i < 32; ++i)
                     std::clog << " [" << i << "]:" << std::hex << register_file.gpr[i];
                 std::clog << std::endl;
-				b = ROB_queue.erase(b);
+				*/
+                b = ROB_queue.erase(b);
 			}
 			else
 				break;
@@ -967,11 +984,13 @@ Stage_Result Tomasulo_Two::commit(unsigned long long clock)
 
 				    if (register_stat[b->rd].nROB == (uint32_t)(&(*b)))
 					    register_stat[b->rd].busy = false;
+                    /*
                     std::clog << std::hex << b->insn.fields.pc << std::endl;
                     for(int i = 0; i < 32; ++i)
                         std::clog << " [" << i << "]:" << std::hex << register_file.gpr[i];
                     std::clog << std::endl;
-				    b = ROB_queue.erase(b);
+				    */
+                    b = ROB_queue.erase(b);
 				    clear = true;
 				    break;
 			    }
@@ -983,31 +1002,62 @@ Stage_Result Tomasulo_Two::commit(unsigned long long clock)
 				if (b->insn.opcode == Opcode::BRANCH){
 					bool predict = b->insn.taken;
 					bool result = (b->value > 0)?true:false;
-					if (predict != result) {
-						if (result)
-							register_file.pc = (b->insn.fields.pc + b->insn.fields.imm);
-						else
-							register_file.pc = (b->insn.fields.pc + WORD_SIZE);
-						clear = true;
-                        std::clog << std::hex << b->insn.fields.pc << std::endl;
-                        for(int i = 0; i < 32; ++i)
-                            std::clog << " [" << i << "]:" << std::hex << register_file.gpr[i];
-                        std::clog << std::endl;
-						b = ROB_queue.erase(b);
-						break;
-					}
-				}
+					if(branch_predict == false){
+                        if (predict != result) {
+						    if (result)
+							    register_file.pc = (b->insn.fields.pc + b->insn.fields.imm);
+						    else
+							    register_file.pc = (b->insn.fields.pc + WORD_SIZE);
+						    clear = true;
+                            /*
+                            std::clog << std::hex << b->insn.fields.pc << std::endl;
+                            for(int i = 0; i < 32; ++i)
+                                std::clog << " [" << i << "]:" << std::hex << register_file.gpr[i];
+                            std::clog << std::endl;
+						    */
+                            b = ROB_queue.erase(b);
+						    break;
+					    }
+				    }
+                    else{
+                        if (predict != result) {
+                            predictor[b->insn.fields.pc].miss = !(predictor[b->insn.fields.pc].miss);
+                            if(predictor[b->insn.fields.pc].miss == false){
+                                predictor[b->insn.fields.pc].taken = !( predictor[b->insn.fields.pc].taken ); 
+                            }
+
+						    if (result)
+							    register_file.pc = (b->insn.fields.pc + b->insn.fields.imm);
+						    else
+							    register_file.pc = (b->insn.fields.pc + WORD_SIZE);
+						    clear = true;
+                            /*
+                            std::clog << std::hex << b->insn.fields.pc << std::endl;
+                            for(int i = 0; i < 32; ++i)
+                                std::clog << " [" << i << "]:" << std::hex << register_file.gpr[i];
+                            std::clog << std::endl;
+						    */
+                            b = ROB_queue.erase(b);
+						    break;
+
+                        }
+                        else
+                            predictor[b->insn.fields.pc].miss = false;
+                    }
+                }
 
 				if (b->rd != 0) {
 					register_file.gpr[b->rd] = b->value;
 					if (register_stat[b->rd].nROB == (uint32_t)(&(*b)))
 						register_stat[b->rd].busy = false;
 				}
+                /*
                 std::clog << std::hex << b->insn.fields.pc << std::endl;
                 for(int i = 0; i < 32; ++i)
                     std::clog << " [" << i << "]:" << std::hex << register_file.gpr[i];
                 std::clog << std::endl;
-				b = ROB_queue.erase(b);
+				*/
+                b = ROB_queue.erase(b);
 			}
 			else
 				break;

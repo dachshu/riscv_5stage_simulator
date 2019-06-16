@@ -6,6 +6,7 @@
 #include "tomasulo.h"
 #include <deque>
 #include <list>
+#include <map>
 
 struct TWO_BIT_ENTRY{
     bool taken{ true };
@@ -23,7 +24,9 @@ class Tomasulo_Two {
 	std::list<RS_ENTRY> MULDIV_RS;
 	std::list<RS_ENTRY> ADDR_RS;
 	std::list<RS_ENTRY> LOAD_BUFFER;
-
+    
+    bool branch_predict{ false };
+    std::map<uint32_t, TWO_BIT_ENTRY> predictor;
 private:
 	bool get_operand(uint32_t rg, int32_t& value, uint32_t& nROB);
 
@@ -52,6 +55,11 @@ private:
 	Stage_Result commit(unsigned long long clock);
 public:
     Tomasulo_Two(Memory* mem, uint32_t entry_point, uint32_t sp) : memory(mem) {
+		register_file.pc = entry_point;
+		register_file.gpr[2] = sp;
+	}
+
+    Tomasulo_Two(Memory* mem, uint32_t entry_point, uint32_t sp, bool predict) : memory(mem), branch_predict(predict) {
 		register_file.pc = entry_point;
 		register_file.gpr[2] = sp;
 	}
