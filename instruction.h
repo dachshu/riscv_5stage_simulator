@@ -1,4 +1,4 @@
-#pragma 
+#pragma once
 
 #include <stdint.h>
 
@@ -18,7 +18,8 @@ enum class Opcode {
 	OP_FP,
 
 	FENCE,
-	AMO
+	AMO,
+    NOP
 };
 
 enum class Type {
@@ -144,7 +145,7 @@ public:
 	Type type{ Type::I };
 	Fields fields;
 	Function function{ Function::ADDI };
-	
+    bool taken{ false };	
 
 	Instruction(uint32_t v) : value(v) {}
 

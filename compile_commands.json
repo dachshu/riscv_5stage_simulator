@@ -28,5 +28,15 @@
   "directory": "/home/cjy/riscv_simulator/riscv_5stage_simulator",
   "command": "/usr/bin/c++    -m32 -g   -o CMakeFiles/riscv_simulator.out.dir/syscall.cpp.o -c /home/cjy/riscv_simulator/riscv_5stage_simulator/syscall.cpp",
   "file": "/home/cjy/riscv_simulator/riscv_5stage_simulator/syscall.cpp"
+},
+{
+  "directory": "/home/cjy/riscv_simulator/riscv_5stage_simulator",
+  "command": "/usr/bin/c++    -m32 -g   -o CMakeFiles/riscv_simulator.out.dir/tomasulo.cpp.o -c /home/cjy/riscv_simulator/riscv_5stage_simulator/tomasulo.cpp",
+  "file": "/home/cjy/riscv_simulator/riscv_5stage_simulator/tomasulo.cpp"
+},
+{
+  "directory": "/home/cjy/riscv_simulator/riscv_5stage_simulator",
+  "command": "/usr/bin/c++    -m32 -g   -o CMakeFiles/riscv_simulator.out.dir/tomasulo_2.cpp.o -c /home/cjy/riscv_simulator/riscv_5stage_simulator/tomasulo_2.cpp",
+  "file": "/home/cjy/riscv_simulator/riscv_5stage_simulator/tomasulo_2.cpp"
 }
 ]

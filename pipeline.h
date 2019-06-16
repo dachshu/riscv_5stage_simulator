@@ -229,7 +229,7 @@ private:
 	void mem_fpdiv_first_half();
 	Stage_Result mem_fpdiv_second_half();
 
-	int wb_alu_first_half();
+	int wb_alu_first_half(unsigned long long clock);
 	Stage_Result wb_alu_second_half();
 	void wb_muldiv_first_half();
 	Stage_Result wb_muldiv_second_half();

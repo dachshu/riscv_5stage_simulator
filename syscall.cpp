@@ -48,7 +48,7 @@ int sys_write(long fd, long buf, long count, Memory& memory){
     return write(fd, memory.get_ptr(buf), count);
 }
 
-long do_syscall(long a0, long a1, long a2, long a3, long a4, long a5, unsigned long n, Memory& memory)
+long do_syscall(long a0, long a1, long a2, long a3, long a4, long a5, unsigned long n, Memory& memory, unsigned long long clock)
 {
 	switch (n)
 	{
@@ -72,6 +72,7 @@ long do_syscall(long a0, long a1, long a2, long a3, long a4, long a5, unsigned l
     case SYS_exit:
     case SYS_exit_group:
         std::clog << "bye~!" << std::endl;
+        std::clog << std::dec << "[ clock ] " << clock << std::endl;
         exit(0);
     default:
         std::clog << "not defined syscall " << std::dec << n << std::endl;
@@ -82,11 +83,11 @@ long do_syscall(long a0, long a1, long a2, long a3, long a4, long a5, unsigned l
 }
 
 
-void handle_syscall(RegisterFile& register_file, Memory& memory)
+void handle_syscall(RegisterFile& register_file, Memory& memory, unsigned long long clock)
 {
 	register_file.gpr[10] = do_syscall(register_file.gpr[10]
 		, register_file.gpr[11], register_file.gpr[12], register_file.gpr[13],
-		register_file.gpr[14], register_file.gpr[15], register_file.gpr[17], memory);
+		register_file.gpr[14], register_file.gpr[15], register_file.gpr[17], memory, clock);
     std::clog << "sys call num: " << std::dec << register_file.gpr[17] << std::endl;
 }
 

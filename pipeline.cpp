@@ -757,7 +757,7 @@ void Pipeline::write_memory()
 		memory->write(ex_mem_alu.alu_result, WORD_SIZE, (uint32_t*)& ex_mem_alu.B);
 		break;
 	case Function::FSW:
-		memory->write(ex_mem_alu.alu_result, BYTE_SIZE, (uint32_t*)& ex_mem_alu.Bf);
+		memory->write(ex_mem_alu.alu_result, WORD_SIZE, (uint32_t*)& ex_mem_alu.Bf);
 		break;
 	}
 }
@@ -1029,7 +1029,7 @@ Stage_Result Pipeline::mem_fpdiv_second_half()
 	return Stage_Result::MEM;
 }
 
-int Pipeline::wb_alu_first_half()
+int Pipeline::wb_alu_first_half(unsigned long long clock)
 {
 	wb_alu.nop = false;
 
@@ -1069,7 +1069,7 @@ int Pipeline::wb_alu_first_half()
 			mem_fpmul.syscall_invalidation = true;
 			mem_fpdiv.syscall_invalidation = true;
 
-			handle_syscall(register_file, *memory);
+			handle_syscall(register_file, *memory, clock);
 			register_file.pc = mem_wb_alu.alu_result;
 		}
 		return 0;
@@ -1197,7 +1197,7 @@ Stage_Result Pipeline::wb_fpdiv_second_half()
 
 void Pipeline::run()
 {
-	unsigned long long clock = 0;
+	unsigned long long clock = 1;
 
 	while (true)
 	{
@@ -1216,7 +1216,7 @@ void Pipeline::run()
 		mem_fpadd_first_half();
 		mem_fpmul_first_half();
 		mem_fpdiv_first_half();
-		shut_down = wb_alu_first_half();
+		shut_down = wb_alu_first_half(clock);
 		wb_muldiv_first_half();
 		wb_fpadd_first_half();
 		wb_fpmul_first_half();
@@ -1298,8 +1298,8 @@ void Pipeline::run()
 		results[0] = fetch_second_half();
 
 		++clock;
-		
-		const char* stage_str[16] = {
+        /*
+        const char* stage_str[16] = {
 			"IF", "SYSCALL", "BRANCH",
 			"STRUCT", "SYNC",
 			"ID", "RAW", "WAW", "NOP",
@@ -1407,8 +1407,8 @@ void Pipeline::run()
         for(int i = 0; i < 32; ++i)
             std::clog << " [" << i <<"]:" << std::hex << register_file.gpr[i];
         std::clog << std::endl;
-
-		if (shut_down)
+	    */	
+        if (shut_down)
 			return;
 	}
 }

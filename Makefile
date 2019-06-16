@@ -288,6 +288,60 @@ syscall.cpp.s:
 	$(MAKE) -f CMakeFiles/riscv_simulator.out.dir/build.make CMakeFiles/riscv_simulator.out.dir/syscall.cpp.s
 .PHONY : syscall.cpp.s
 
+tomasulo.o: tomasulo.cpp.o
+
+.PHONY : tomasulo.o
+
+# target to build an object file
+tomasulo.cpp.o:
+	$(MAKE) -f CMakeFiles/riscv_simulator.out.dir/build.make CMakeFiles/riscv_simulator.out.dir/tomasulo.cpp.o
+.PHONY : tomasulo.cpp.o
+
+tomasulo.i: tomasulo.cpp.i
+
+.PHONY : tomasulo.i
+
+# target to preprocess a source file
+tomasulo.cpp.i:
+	$(MAKE) -f CMakeFiles/riscv_simulator.out.dir/build.make CMakeFiles/riscv_simulator.out.dir/tomasulo.cpp.i
+.PHONY : tomasulo.cpp.i
+
+tomasulo.s: tomasulo.cpp.s
+
+.PHONY : tomasulo.s
+
+# target to generate assembly for a file
+tomasulo.cpp.s:
+	$(MAKE) -f CMakeFiles/riscv_simulator.out.dir/build.make CMakeFiles/riscv_simulator.out.dir/tomasulo.cpp.s
+.PHONY : tomasulo.cpp.s
+
+tomasulo_2.o: tomasulo_2.cpp.o
+
+.PHONY : tomasulo_2.o
+
+# target to build an object file
+tomasulo_2.cpp.o:
+	$(MAKE) -f CMakeFiles/riscv_simulator.out.dir/build.make CMakeFiles/riscv_simulator.out.dir/tomasulo_2.cpp.o
+.PHONY : tomasulo_2.cpp.o
+
+tomasulo_2.i: tomasulo_2.cpp.i
+
+.PHONY : tomasulo_2.i
+
+# target to preprocess a source file
+tomasulo_2.cpp.i:
+	$(MAKE) -f CMakeFiles/riscv_simulator.out.dir/build.make CMakeFiles/riscv_simulator.out.dir/tomasulo_2.cpp.i
+.PHONY : tomasulo_2.cpp.i
+
+tomasulo_2.s: tomasulo_2.cpp.s
+
+.PHONY : tomasulo_2.s
+
+# target to generate assembly for a file
+tomasulo_2.cpp.s:
+	$(MAKE) -f CMakeFiles/riscv_simulator.out.dir/build.make CMakeFiles/riscv_simulator.out.dir/tomasulo_2.cpp.s
+.PHONY : tomasulo_2.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -315,6 +369,12 @@ help:
 	@echo "... syscall.o"
 	@echo "... syscall.i"
 	@echo "... syscall.s"
+	@echo "... tomasulo.o"
+	@echo "... tomasulo.i"
+	@echo "... tomasulo.s"
+	@echo "... tomasulo_2.o"
+	@echo "... tomasulo_2.i"
+	@echo "... tomasulo_2.s"
 .PHONY : help
 
 

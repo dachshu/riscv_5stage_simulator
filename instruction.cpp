@@ -26,7 +26,8 @@ Opcode int_to_opcode(uint32_t insn) {
 	case 0b0101111: return Opcode::AMO;
 	default: {
 		clog << "Unknown opcde " << hex << opcode << endl;
-		exit(1);
+		//exit(1);
+        return Opcode::NOP;
         break;
 	}
 	}
@@ -322,7 +323,11 @@ void Instruction::decode()
         value = 0x13;
 	
     opcode = int_to_opcode(value);
-	type = opcode_to_type(opcode);
+    if(opcode == Opcode::NOP){
+        value = 0x13;
+        opcode = int_to_opcode(value);
+    }
+    type = opcode_to_type(opcode);
 	switch (type) {
 			case Type::R: 
 				parse_type_r(value, fields);

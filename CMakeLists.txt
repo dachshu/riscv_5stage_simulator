@@ -12,4 +12,4 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_CXX_FLAGS "-m32")
 
 
-add_executable(riscv_simulator.out main.cpp elf.cpp instruction.cpp memory.cpp pipeline.cpp syscall.cpp)
+add_executable(riscv_simulator.out main.cpp elf.cpp instruction.cpp memory.cpp pipeline.cpp syscall.cpp tomasulo.cpp tomasulo_2.cpp)

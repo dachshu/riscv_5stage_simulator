@@ -2,7 +2,8 @@
 #include "elf.h"
 #include "memory.h"
 #include "pipeline.h"
-#include <iostream>
+#include "tomasulo.h"
+#include "tomasulo_2.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ int main(int argc, char* argv[])
 
 
 	//load_elf(argv[1], entry_point, base_vaddr, max_vaddr, memory, stack, sp);
-	load_elf("hello_riscv_cpp", entry_point, base_vaddr, max_vaddr, memory
+	load_elf("hello-riscv-dbg", entry_point, base_vaddr, max_vaddr, memory
 		, stack, sp);
 
 	if (!memory) {
@@ -29,8 +30,11 @@ int main(int argc, char* argv[])
 	std::clog << "entry point : " << entry_point << std::endl;
 
 	Memory mem{ entry_point, base_vaddr, max_vaddr, memory, stack };
-	Pipeline pipeline{ &mem, entry_point, sp };
-	pipeline.run();
+	//Pipeline pipeline{ &mem, entry_point, sp };
+	Tomasulo pipeline{ &mem, entry_point, sp };
+	//Tomasulo_Two pipeline{ &mem, entry_point, sp };
+
+    pipeline.run();
 		 
 
 	if (memory)

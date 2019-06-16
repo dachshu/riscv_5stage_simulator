@@ -63,6 +63,6 @@
 #define SYS_lstat 1039
 #define SYS_time 1062
 
-void handle_syscall(RegisterFile& register_file, Memory& memory);
+void handle_syscall(RegisterFile& register_file, Memory& memory, unsigned long long clock);
 
-long do_syscall(long a0, long a1, long a2, long a3, long a4, long a5, unsigned long n);
+long do_syscall(long a0, long a1, long a2, long a3, long a4, long a5, unsigned long n, unsigned long long clock);

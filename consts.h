@@ -25,6 +25,8 @@
 #define FP_MUL_CYCLE 10
 #define FP_DIV_CYCLE 20
 #define CACHE_ACCESS_CYCLE 10
+#define MUL_CYCLE 4
+#define DIV_CYCLE 8
 
 #define STACK_SIZE 8388608
 #define STACK_OFFSET (0x0 - 8388608)
@@ -42,7 +44,8 @@ enum class Stage_Result {
 	NOP,
 	FPDIV, FPMUL, FPADD,
 	MULDIV, EX,
-	MEM, WB
+	MEM, WB,
+    ISSUE, ADDR, CDB, COMMIT
 };
 
 enum class UNIT {
